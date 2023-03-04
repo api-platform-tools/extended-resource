@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace PhpSimple;
+namespace ApiPlatformTools;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\OpenApi\Model\Operation;

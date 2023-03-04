@@ -1,1 +1,1 @@
-# extended-api-resource
+# extended-resource

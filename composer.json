@@ -1,14 +1,16 @@
 {
-    "name": "phpsimple/extended-api-resource",
-    "description": "Php Simple Extend api-platform ApiResource attribute",
+    "name": "api-platform-tools/extended-resource",
+    "description": "API Platform Tools: Extend api-platform/core ApiResource attribute",
     "type": "library",
     "keywords": [
         "api",
         "api-platform",
+        "api-platform-tools",
         "api-resource",
         "attribute",
         "php",
-        "resource"
+        "resource",
+        "tools"
     ],
     "license": "MIT",
     "authors": [
@@ -24,11 +26,16 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "*",
         "roave/security-advisories": "dev-latest",
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": ">=10.0"
     },
     "autoload": {
         "psr-4": {
-            "PhpSimple\\": "src/"
+            "ApiPlatformTools\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ApiPlatformTools\\Tests\\": "tests/src/"
         }
     },
     "minimum-stability": "dev",
@@ -38,17 +45,17 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-simple": "1.x-dev"
+            "dev-simple": "0.x-dev"
         },
         "thanks": {
-            "name": "phpsimple/extended-api-resource",
-            "url": "https://github.com/phpsimple/extended-api-resource"
+            "name": "api-platform-tools/extended-resource",
+            "url": "https://github.com/api-platform-tools/extended-resource"
         }
     },
     "funding": [
         {
             "type": "issuehunt",
-            "url": "https://issuehunt.io/r/phpsimple/extended-api-resource"
+            "url": "https://issuehunt.io/r/api-platform-tools/extended-resource"
         }
     ]
 }
