@@ -1,6 +1,6 @@
 | Q             | A
 | ------------- | ---
-| Branch?       | simple
+| Branch?       | master
 | Bug fix?      | yes / no
 | New feature?  | yes / no
 | Deprecations? | yes / no
