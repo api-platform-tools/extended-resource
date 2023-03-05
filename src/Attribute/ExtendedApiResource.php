@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\OpenApi\Model\Operation;
 use ApiPlatform\State\OptionsInterface;
 use Attribute;
+use InvalidArgumentException;
 use PhpToken;
 use ReflectionClass;
 use ReflectionException;
@@ -14,8 +15,10 @@ use function count;
 use function debug_backtrace;
 use function file_get_contents;
 use function func_get_args;
+use function sprintf;
 
 use const T_CLASS;
+use const T_NAME_QUALIFIED;
 use const T_NAMESPACE;
 use const T_STRING;
 use const T_WHITESPACE;
@@ -95,11 +98,19 @@ class ExtendedApiResource extends ApiResource
         $attributes = func_get_args();
 
         try {
-            if (null !== $callerClass) {
-                $caller = new ReflectionClass(objectOrClass: $callerClass);
-                $parent = $caller->getParentClass();
-                $attributes = $parent->getAttributes(name: ApiResource::class)[0]->getArguments();
+            $caller = new ReflectionClass(objectOrClass: $callerClass);
+            $parent = $caller->getParentClass();
+
+            if (false === $parent) {
+                throw new InvalidArgumentException(sprintf('%s must only be used with parent class, no parent found on %s', __CLASS__, $callerClass));
             }
+
+            $resource = $parent->getAttributes(name: ApiResource::class);
+            if ([] === $resource) {
+                throw new InvalidArgumentException(sprintf('%s must only be used to extend %s attribute, no such attrbute found on %s', __CLASS__, ApiResource::class, $callerClass));
+            }
+
+            $attributes = $resource[0]->getArguments();
             $current = (new ReflectionClass(objectOrClass: __CLASS__))->getMethod(name: __FUNCTION__);
             $i = 0;
             $args = func_get_args();
